@@ -1,0 +1,14 @@
+# Blueprint Render: layanan web gratis dari Dockerfile.
+# Buka https://render.com/deploy?repo=<alamat-repo-github> untuk membuatnya.
+services:
+  - type: web
+    name: racik-lokal
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: RACIK_KUNCI_DATA
+        generateValue: true
+      - key: RACIK_COOKIE_SAMESITE
+        value: lax
