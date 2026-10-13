@@ -70,7 +70,16 @@ Teks panduan ada di `tools/panduan/panduan.html`; adegan, teks, dan efek suara v
 `tools/panduan/video.html`. Efek suara dan musik latar dibuat dengan Web Audio, tanpa berkas suara dari luar.
 Video berformat WebM (VP9 dan Opus), jadi bisa diputar di Chrome, Edge, Firefox, dan Android.
 
-## Deploy gratis ke Hugging Face Spaces
+## Deploy gratis ke Render
+
+Repositori ini berisi `render.yaml` (Blueprint) dan `Dockerfile`. Setelah kode ada di GitHub (repositori
+publik), buka `https://render.com/deploy?repo=https://github.com/<akun>/racik-lokal`, masuk ke Render, lalu
+tekan **Deploy Blueprint**. Render membuat layanan web gratis dengan kunci enkripsi acak. Layanan gratis tidur
+setelah 15 menit tidak dibuka, dan data kembali ke data contoh setiap kali layanan bangun.
+
+## Deploy ke Hugging Face Spaces (perlu langganan PRO)
+
+Sejak 2026, Space Docker di CPU gratis mewajibkan langganan PRO.
 
 ```bash
 python -m huggingface_hub.cli.hf auth login   # sekali saja, login lewat peramban

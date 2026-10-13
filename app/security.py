@@ -121,7 +121,13 @@ def _cipher() -> Fernet:
                     f.write(Fernet.generate_key())
             with open(path, "rb") as f:
                 key = f.read().strip()
-        _fernet = Fernet(key)
+        try:
+            _fernet = Fernet(key)
+        except ValueError:
+            # Kunci dari layanan hosting (misalnya nilai acak Render) belum tentu berformat Fernet;
+            # turunkan menjadi kunci 32 byte yang sah.
+            raw = key.encode() if isinstance(key, str) else key
+            _fernet = Fernet(base64.urlsafe_b64encode(hashlib.sha256(raw).digest()))
     return _fernet
 
 
