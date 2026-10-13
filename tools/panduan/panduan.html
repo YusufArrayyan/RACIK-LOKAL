@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Panduan Penggunaan RACIK-LOKAL</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  @page { size: A4; margin: 16mm 16mm 18mm; }
+  :root { --accent: #066867; --soft: #e6f1ef; --ink: #161616; --muted: #4a524f; --subtle: #6b7370; --line: #e3e8e6; --canvas: #f2f4f2; --jingga: #e8890c; --warn-bg: #f3ebdb; --warn: #8a5a00; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font: 400 10.5pt/1.55 "IBM Plex Sans", system-ui, sans-serif; color: var(--ink); }
+  h1, h2, h3, p, ol, ul { margin: 0; }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  .putus { break-before: page; }
+  .utuh { break-inside: avoid; }
+
+  /* Sampul */
+  .sampul { height: 263mm; display: flex; flex-direction: column; justify-content: space-between; padding: 6mm 2mm 0; }
+  .merek { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13pt; letter-spacing: .3px; }
+  .merek img { width: 34px; height: 34px; }
+  .merek b { color: var(--accent); }
+  .sampul .pil { display: inline-block; background: var(--soft); color: var(--accent); border-radius: 999px; padding: 4px 14px; font-size: 9.5pt; font-weight: 600; margin-bottom: 14px; }
+  .sampul h1 { font-size: 34pt; line-height: 1.12; font-weight: 600; letter-spacing: -.5px; }
+  .sampul h1 span { color: var(--accent); }
+  .sampul .lead { font-size: 13pt; color: var(--muted); margin-top: 14px; max-width: 150mm; }
+  .sampul figure { margin: 0; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 6px rgba(16,40,38,.06), 0 18px 40px rgba(16,40,38,.12); }
+  .sampul figure img { display: block; width: 100%; }
+  .sampul .kaki { display: flex; justify-content: space-between; font-size: 9pt; color: var(--subtle); border-top: 1px solid var(--line); padding-top: 10px; }
+
+  /* Judul bagian */
+  .bagian { display: flex; align-items: center; gap: 12px; margin: 0 0 6px; }
+  .bagian .no { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13pt; }
+  .bagian h2 { font-size: 19pt; font-weight: 600; letter-spacing: -.2px; }
+  .intro { color: var(--muted); font-size: 11pt; margin: 0 0 14px 46px; }
+  h3 { font-size: 12.5pt; font-weight: 600; margin: 18px 0 8px; }
+  p + p { margin-top: 6px; }
+
+  /* Gambar layar dengan penjelasan bernomor */
+  figure.layar { margin: 8px 0 12px; break-inside: avoid; }
+  figure.layar img { display: block; width: auto; max-width: 100%; max-height: 86mm; margin: 0 auto; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 2px 10px rgba(16,40,38,.08); }
+  figure.layar figcaption { margin-top: 10px; }
+  ol.tanda { list-style: none; padding: 0; display: grid; gap: 6px; }
+  ol.tanda li { position: relative; padding-left: 32px; min-height: 22px; }
+  ol.tanda li::before { content: attr(data-no); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--jingga); color: #fff; font-weight: 700; font-size: 9.5pt; line-height: 22px; text-align: center; }
+
+  /* Kotak bantuan */
+  .kotak { border-radius: 12px; padding: 10px 14px; margin: 12px 0; font-size: 10pt; break-inside: avoid; }
+  .kotak.tip { background: var(--soft); }
+  .kotak.awas { background: var(--warn-bg); }
+  .kotak > b:first-child { display: block; margin-bottom: 2px; }
+  .kotak.tip > b:first-child { color: var(--accent); }
+  .kotak.awas > b:first-child { color: var(--warn); }
+
+  /* Alur */
+  .alur { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 12px 0 6px; }
+  .alur div { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; font-size: 9.5pt; color: var(--muted); }
+  .alur div b { display: block; color: var(--ink); font-size: 10.5pt; margin: 4px 0 2px; }
+  .alur div .n { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 9.5pt; }
+  .alur div.peninjau .n { background: var(--jingga); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 8px 0; }
+  th { text-align: left; font-size: 9pt; color: var(--muted); font-weight: 600; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td.akun { font-family: "IBM Plex Mono", monospace; font-size: 9pt; white-space: nowrap; }
+
+  /* Daftar isi */
+  .isi { columns: 2; column-gap: 12mm; margin-top: 10px; }
+  .isi div { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+  .isi div span { color: var(--accent); font-weight: 700; min-width: 20px; }
+  .dua { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+</style>
+</head>
+<body>
+
+<!-- Sampul -->
+<section class="sampul">
+  <div class="merek"><img src="../../static/assets/brand/mark-192.png" alt=""><span>RACIK-<b>LOKAL</b></span></div>
+  <div>
+    <span class="pil">Panduan penggunaan untuk UMKM, ahli gizi, dan koordinator</span>
+    <h1>Cara memakai<br><span>RACIK-LOKAL</span></h1>
+    <p class="lead">Langkah demi langkah meracik camilan bergizi dari bahan lokal Bengkulu: dari menentukan sasaran, menghitung komposisi, memeriksa klaim label, sampai meminta persetujuan ahli gizi.</p>
+  </div>
+  <figure><img src="gambar/06-racik-hasil.jpg" alt="Layar Racik"></figure>
+  <div class="kaki"><span>Versi prototipe, Oktober 2026</span><span>Semua angka di aplikasi adalah data contoh</span></div>
+</section>
+
+<!-- Daftar isi dan kenalan -->
+<section class="putus">
+  <div class="bagian"><h2>Isi panduan</h2></div>
+  <div class="isi">
+    <div><span>1</span>Kenalan dengan RACIK-LOKAL</div>
+    <div><span>2</span>Masuk ke aplikasi</div>
+    <div><span>3</span>Beranda dan formula baru</div>
+    <div><span>4</span>Langkah 1: Sasaran</div>
+    <div><span>5</span>Langkah 2: Racik</div>
+    <div><span>6</span>Langkah 3: Cek klaim</div>
+    <div><span>7</span>Langkah 4: Ajukan</div>
+    <div><span>8</span>Bahan, foto, dan takaran sendok</div>
+    <div><span>9</span>Untuk ahli gizi: Tinjau</div>
+    <div><span>10</span>Untuk koordinator: Pilot</div>
+    <div><span>11</span>Tips dan batasan</div>
+  </div>
+
+  <div class="bagian" style="margin-top: 22px"><span class="no">1</span><h2>Kenalan dengan RACIK-LOKAL</h2></div>
+  <p class="intro">RACIK-LOKAL membantu Anda menyusun formula camilan yang cukup zat gizi untuk remaja putri dengan biaya bahan serendah mungkin.</p>
+  <p>Anda cukup menentukan untuk siapa camilan dibuat dan berapa biaya maksimalnya. Mesin Racik lalu menghitung berapa gram tiap bahan yang perlu dipakai, memeriksa klaim gizi yang boleh ditulis di label, dan menyiapkan formula untuk ditinjau ahli gizi.</p>
+
+  <h3>Alur kerja</h3>
+  <div class="alur">
+    <div><span class="n">1</span><b>Sasaran</b>Untuk siapa dan berapa biayanya</div>
+    <div><span class="n">2</span><b>Racik</b>Gram tiap bahan dan gizinya</div>
+    <div><span class="n">3</span><b>Cek klaim</b>Klaim label yang boleh dipakai</div>
+    <div><span class="n">4</span><b>Ajukan</b>Kirim ke ahli gizi</div>
+    <div class="peninjau"><span class="n">✓</span><b>Tinjau</b>Ahli gizi menyetujui atau meminta revisi</div>
+  </div>
+
+  <h3>Siapa memakai apa</h3>
+  <table>
+    <thead><tr><th>Peran</th><th>Tugas utama</th><th>Akun contoh</th></tr></thead>
+    <tbody>
+      <tr><td><b>Formulator</b> (UMKM)</td><td>Membuat formula, meracik, memeriksa klaim, lalu mengajukan.</td><td class="akun">dewi@contoh.id</td></tr>
+      <tr><td><b>Peninjau</b> (ahli gizi)</td><td>Meninjau formula, mengubah batas bahan, serta mengelola data bahan dan takaran.</td><td class="akun">rina@contoh.id</td></tr>
+      <tr><td><b>Koordinator pilot</b></td><td>Memantau asupan zat besi peserta, batch produksi, dan hasil uji lab.</td><td class="akun">rian@contoh.id</td></tr>
+      <tr><td><b>Admin</b></td><td>Mengelola pengguna dan semua data.</td><td class="akun">admin@contoh.id</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 9.5pt; color: var(--subtle)">Kata sandi semua akun contoh: <span class="mono">racik-lokal-2026</span>. Akun ini hanya untuk mencoba prototipe.</p>
+</section>
+
+<!-- Masuk -->
+<section class="putus">
+  <div class="bagian"><span class="no">2</span><h2>Masuk ke aplikasi</h2></div>
+  <p class="intro">Buka alamat aplikasi di peramban ponsel atau laptop. Aplikasi juga bisa dipasang ke layar utama ponsel.</p>
+  <figure class="layar">
+    <img src="gambar/01-halaman-awal.jpg" alt="Halaman awal">
+    <figcaption><ol class="tanda"><li data-no="1">Di halaman awal, tekan <b>Masuk</b>. Anda juga bisa menonton video cara pakai dan mengunduh panduan ini dari halaman awal.</li></ol></figcaption>
+  </figure>
+  <figure class="layar">
+    <img src="gambar/02-masuk.jpg" alt="Layar masuk">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Isi surel dan kata sandi, lalu tekan <b>Masuk</b>.</li>
+      <li data-no="2">Untuk mencoba, pakai salah satu akun contoh yang tertera di bawah tombol.</li>
+    </ol></figcaption>
+  </figure>
+</section>
+
+<!-- Beranda -->
+<section class="putus">
+  <div class="bagian"><span class="no">3</span><h2>Beranda dan formula baru</h2></div>
+  <p class="intro">Beranda selalu menampilkan pekerjaan terakhir Anda, jadi Anda bisa langsung melanjutkan.</p>
+  <figure class="layar">
+    <img src="gambar/03-beranda.jpg" alt="Beranda">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Kartu <b>Lanjutkan pekerjaan Anda</b> menunjukkan formula terakhir dan langkah berikutnya. Tekan tombolnya untuk melanjutkan.</li>
+      <li data-no="2">Tekan <b>Formula baru</b> untuk mulai meracik dari awal.</li>
+    </ol></figcaption>
+  </figure>
+  <figure class="layar">
+    <img src="gambar/04-formula-baru.jpg" alt="Membuat formula baru">
+    <figcaption><p>Beri nama formula, misalnya "Camilan batang tempe-kelor 40 g", pilih kelompok sasaran, lalu tekan <b>Lanjut ke Sasaran</b>.</p></figcaption>
+  </figure>
+</section>
+
+<!-- Sasaran -->
+<section class="putus">
+  <div class="bagian"><span class="no">4</span><h2>Langkah 1: Sasaran</h2></div>
+  <p class="intro">Beri tahu aplikasi untuk siapa camilan ini dan berapa biayanya. Target gizi terisi otomatis.</p>
+  <figure class="layar">
+    <img src="gambar/05-sasaran.jpg" alt="Langkah Sasaran">
+    <figcaption><ol class="tanda">
+      <li data-no="1"><b>Untuk siapa</b>: pilih kelompok, misalnya remaja putri 13 sampai 18 tahun. Target gizi per sajian ikut berubah.</li>
+      <li data-no="2"><b>Berat satu sajian</b> dalam gram, misalnya 40 g untuk satu batang camilan.</li>
+      <li data-no="3"><b>Biaya bahan maksimal</b> per sajian. Kosongkan bila tidak ada batas.</li>
+      <li data-no="4">Tekan <b>Lanjut ke Racik</b>. Mesin langsung menghitung.</li>
+    </ol></figcaption>
+  </figure>
+  <div class="kotak tip"><b>Tips</b>Bagian <b>Pengaturan lanjutan</b> di bawah formulir berisi zat gizi lain, bahan yang boleh dipakai, dan batas pemakaian. Biarkan saja bila Anda belum yakin; nilai bawaannya sudah aman.</div>
+</section>
+
+<!-- Racik -->
+<section class="putus">
+  <div class="bagian"><span class="no">5</span><h2>Langkah 2: Racik</h2></div>
+  <p class="intro">Mesin Racik memilih komposisi bahan paling murah yang memenuhi sasaran gizi Anda.</p>
+  <figure class="layar">
+    <img src="gambar/06-racik-hasil.jpg" alt="Hasil Racik">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Penanda langkah menunjukkan posisi Anda: Sasaran, <b>Racik</b>, Cek klaim, Ajukan.</li>
+      <li data-no="2">Kalimat jawaban merangkum hasil, misalnya "6 dari 7 zat gizi sudah cukup". Di bawahnya ada penjelasan bila ada zat gizi yang kurang, beserta tombol untuk memperbaikinya.</li>
+    </ol></figcaption>
+  </figure>
+  <figure class="layar">
+    <img src="gambar/07-racik-takaran.jpg" alt="Isi satu sajian dengan takaran sendok">
+    <figcaption><ol class="tanda">
+      <li data-no="1"><b>Takaran sendok</b> di samping gram, misalnya "14,0 g ≈ 1¾ sdm peres". Ini membantu Anda yang biasa menakar dengan sendok atau gelas. Takaran hanya perkiraan: gizi, biaya, dan klaim selalu dihitung dari gram, jadi timbang bahan bila bisa.</li>
+      <li data-no="2"><b>Foto bahan</b> membantu Anda mengenali bahannya.</li>
+    </ol></figcaption>
+  </figure>
+</section>
+
+<section class="putus">
+  <figure class="layar">
+    <img src="gambar/08-racik-gizi.jpg" alt="Gizi dalam satu sajian">
+    <figcaption><ol class="tanda">
+      <li data-no="1"><b>Gizi dalam satu sajian</b> dibandingkan dengan target. Status <b>Cukup</b> bertanda centang; status <b>Kurang</b> bertanda segitiga beserta persentase kekurangannya.</li>
+    </ol></figcaption>
+  </figure>
+  <figure class="layar">
+    <img src="gambar/09-racik-batas.jpg" alt="Batas pemakaian bahan">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Buka <b>Batas pemakaian bahan</b> untuk mengatur persen terendah dan tertinggi tiap bahan, misalnya bila rasa kelor terlalu getir. Tekan <b>Simpan batas dan racik ulang</b>.</li>
+      <li data-no="2">Centang <b>Kunci</b> agar bahan dipakai tepat sebesar batas bawahnya.</li>
+    </ol></figcaption>
+  </figure>
+  <div class="kotak tip"><b>Riwayat versi dan ekspor</b>Setiap kali Anda meracik, hasilnya tersimpan sebagai versi baru. Buka <b>Riwayat versi</b> untuk membandingkan versi atau mengunduh hasilnya sebagai CSV, lengkap dengan kolom takaran sendok.</div>
+</section>
+
+<!-- Cek klaim -->
+<section class="putus">
+  <div class="bagian"><span class="no">6</span><h2>Langkah 3: Cek klaim</h2></div>
+  <p class="intro">Label hanya boleh memuat klaim gizi yang memenuhi syarat BPOM. Aplikasi memeriksanya untuk Anda.</p>
+  <figure class="layar">
+    <img src="gambar/10-cek-klaim.jpg" alt="Cek klaim">
+    <figcaption><ol class="tanda">
+      <li data-no="1"><b>Boleh dipakai</b>: klaim memenuhi syarat. Jumlahnya dirangkum di kalimat paling atas layar.</li>
+      <li data-no="2"><b>Belum boleh</b>: klaim belum memenuhi syarat. Baca sarannya, misalnya menaikkan bahan tertentu sedikit, atau pakai klaim yang lebih ringan.</li>
+    </ol></figcaption>
+  </figure>
+  <div class="kotak awas"><b>Perlu diingat</b>Ambang 15% dan 30% di prototipe masih contoh dan perlu dicocokkan dengan teks resmi Peraturan BPOM Nomor 1 Tahun 2022. Nilai gizi produk jadi tetap harus diuji di laboratorium.</div>
+</section>
+
+<!-- Ajukan -->
+<section class="putus">
+  <div class="bagian"><span class="no">7</span><h2>Langkah 4: Ajukan</h2></div>
+  <p class="intro">Kirim formula ke ahli gizi untuk ditinjau. Anda masih bisa mengubahnya sampai ditinjau.</p>
+  <figure class="layar">
+    <img src="gambar/11-ajukan.jpg" alt="Ajukan">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Centang klaim yang ingin Anda cantumkan di label.</li>
+      <li data-no="2">Klaim yang belum lolos <b>terkunci</b> dan tidak bisa dipilih.</li>
+      <li data-no="3">Pilih ahli gizi yang akan meninjau. Tambahkan catatan bila perlu.</li>
+      <li data-no="4">Tekan <b>Kirim ke peninjau</b>. Status formula berubah menjadi <b>Ditinjau</b>.</li>
+    </ol></figcaption>
+  </figure>
+</section>
+
+<!-- Bahan -->
+<section class="putus">
+  <div class="bagian"><span class="no">8</span><h2>Bahan, foto, dan takaran sendok</h2></div>
+  <p class="intro">Menu Bahan berisi semua bahan lokal beserta foto, harga, kandungan gizi, dan sumber datanya.</p>
+  <figure class="layar">
+    <img src="gambar/12-bahan-daftar.jpg" alt="Daftar bahan">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Cari bahan menurut nama atau kelompok.</li>
+      <li data-no="2">Foto menunjukkan bentuk asli bahan agar Anda tidak bingung bahan ini apa. Untuk bahan olahan, fotonya menunjukkan bahan asalnya.</li>
+    </ol></figcaption>
+  </figure>
+  <figure class="layar">
+    <img src="gambar/13-bahan-detail.jpg" alt="Detail bahan">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Foto bahan beserta keterangan, nama pemotret, dan lisensinya.</li>
+      <li data-no="2">Kandungan gizi per 100 g. Setiap nilai punya sumber dan tanggal. Data yang berumur lebih dari 12 bulan diberi tanda <b>Data perlu diperbarui</b>.</li>
+    </ol></figcaption>
+  </figure>
+</section>
+
+<section class="putus">
+  <figure class="layar">
+    <img src="gambar/14-bahan-takaran.jpg" alt="Takaran rumah tangga dan kalkulator">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Tabel <b>Takaran rumah tangga</b>: berat 1 sdt peres, 1 sdm peres, 1 sdm munjung, dan 1 gelas belimbing untuk bahan ini.</li>
+      <li data-no="2"><b>Kalkulator</b>: pilih takaran, isi jumlah (misalnya 2, 1½, atau 0,5), lalu beratnya dalam gram langsung muncul.</li>
+    </ol></figcaption>
+  </figure>
+  <div class="dua">
+    <div class="kotak tip"><b>Arti takaran</b><b>Peres</b>: sendok diisi lalu diratakan. <b>Munjung</b>: sendok diisi sampai menggunung. <b>Gelas belimbing</b>: gelas bening bergerigi sekitar 200 ml.</div>
+    <div class="kotak awas"><b>Masih data contoh</b>Berat takaran di prototipe belum ditimbang. Ahli gizi atau Admin bisa menimbang ulang lalu mengubahnya lewat tombol <b>Ubah</b> di halaman bahan.</div>
+  </div>
+</section>
+
+<!-- Tinjau -->
+<section class="putus">
+  <div class="bagian"><span class="no">9</span><h2>Untuk ahli gizi: Tinjau</h2></div>
+  <p class="intro">Formula yang diajukan muncul di Beranda ahli gizi. Buka formulanya, periksa isinya, lalu beri keputusan.</p>
+  <figure class="layar">
+    <img src="gambar/15-tinjau.jpg" alt="Tinjau formula">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Pilih keputusan: <b>Setujui</b> (siap produksi), <b>Minta revisi</b> (kembali ke Racik), atau <b>Tolak</b>.</li>
+      <li data-no="2">Tulis catatan untuk formulator. Catatan wajib diisi bila meminta revisi atau menolak.</li>
+      <li data-no="3">Tekan <b>Kirim keputusan</b>. Bila Anda mengubah batas bahan di bagian <b>Ubah batas pemakaian bahan</b>, formula kembali ke langkah Racik.</li>
+    </ol></figcaption>
+  </figure>
+</section>
+
+<!-- Pilot -->
+<section class="putus">
+  <div class="bagian"><span class="no">10</span><h2>Untuk koordinator: Pilot</h2></div>
+  <p class="intro">Pantau uji coba di lapangan: asupan zat besi peserta, biaya nyata, dan hasil uji lab tiap batch.</p>
+  <figure class="layar">
+    <img src="gambar/16-pilot.jpg" alt="Pilot">
+    <figcaption><ol class="tanda">
+      <li data-no="1">Ringkasan asupan zat besi dari produk dibandingkan target.</li>
+      <li data-no="2">Peringatan bila hasil uji lab lebih rendah dari hitungan. Tekan tautannya untuk memakai hasil lab sebagai batas baru di Racik.</li>
+      <li data-no="3"><b>Ekspor CSV</b> untuk mengolah data di Excel.</li>
+    </ol></figcaption>
+  </figure>
+</section>
+
+<!-- Tips -->
+<section class="putus">
+  <div class="bagian"><span class="no">11</span><h2>Tips dan batasan</h2></div>
+  <h3>Pertanyaan yang sering muncul</h3>
+  <table>
+    <tbody>
+      <tr><td style="width: 40%"><b>Hasil Racik bilang "tanpa solusi".</b></td><td>Sasaran terlalu tinggi untuk biaya atau batas bahan yang ada. Ikuti saran di layar satu per satu, misalnya menaikkan biaya maksimal atau batas atas bahan.</td></tr>
+      <tr><td><b>Zat gizi masih kurang.</b></td><td>Tekan tautan di pesan kuning, misalnya <b>Naikkan batas bubuk sari jeruk nipis</b>, lalu racik ulang. Anda juga boleh menerima kekurangannya.</td></tr>
+      <tr><td><b>Saya tidak punya timbangan.</b></td><td>Pakai takaran sendok di samping gram. Hasilnya perkiraan, jadi timbang bila nanti sudah ada timbangan.</td></tr>
+      <tr><td><b>Saya tidak kenal bahannya.</b></td><td>Buka menu Bahan dan lihat fotonya. Foto bahan olahan menunjukkan bahan asalnya.</td></tr>
+      <tr><td><b>Formula sudah disetujui, tetapi saya meracik ulang.</b></td><td>Meracik ulang membuat versi baru berstatus Draf yang perlu diajukan lagi. Versi lama tetap tersimpan.</td></tr>
+    </tbody>
+  </table>
+  <h3>Batasan</h3>
+  <div class="kotak awas"><b>Ini prototipe</b>Semua angka gizi, harga, dan takaran adalah data contoh, bukan data TKPI dan bukan hasil uji laboratorium. Hasil Racik adalah rancangan; nilai gizi produk jadi tetap harus diuji di laboratorium. Aplikasi tidak memberi saran medis, tidak menggantikan tablet tambah darah, dan tidak mengajukan izin edar ke BPOM.</div>
+  <h3>Kredit foto</h3>
+  <p style="font-size: 9.5pt; color: var(--muted)">Foto bahan diambil dari Wikimedia Commons dengan lisensi bebas (CC0, CC BY, dan CC BY-SA). Nama pemotret, lisensi, dan tautan sumber tercantum di halaman setiap bahan.</p>
+</section>
+
+</body>
+</html>

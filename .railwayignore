@@ -1,0 +1,9 @@
+# Tidak ikut diunggah ke server: basis data lokal, kunci, arsip, alat pembuat panduan.
+data/
+_arsip_v1/
+.uji/
+tests/
+tools/
+__pycache__/
+*.pyc
+*.drawio

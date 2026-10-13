@@ -1,0 +1,10 @@
+data/
+_arsip_v1/
+.uji/
+tests/
+tools/
+__pycache__/
+*.pyc
+*.drawio
+.railwayignore
+railway.json

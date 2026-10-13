@@ -1,0 +1,9 @@
+# Basis data, kunci enkripsi, dan data lokal: jangan pernah ikut ke repositori.
+data/
+*.db
+*.key
+.uji/
+_arsip_v1/
+__pycache__/
+*.pyc
+.claude/
